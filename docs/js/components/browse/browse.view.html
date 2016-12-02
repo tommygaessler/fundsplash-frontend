@@ -1,3 +1,34 @@
 <h1>Browse</h1>
 
 <a href="/#/">Home</a>
+
+<!-- parent nav: active, funded, failed -->
+
+<!-- active navigation: popular, almost finished, just started -->
+
+<div ng-repeat="campaign in campaigns">
+  <img ng-src="{{ campaign.profile_image }}" alt="">
+  <h2>{{ campaign.name }}</h2>
+  <p>Status: {{ campaign.status }}</p>
+  <p>Location: {{ campaign.location }}</p>
+  <p>Description: {{ campaign.description }}</p>
+  <p>Goal: {{ campaign.goal }}</p>
+  <p>Raised: {{ campaign.raised }}</p>
+  <a href="{{ campaign.unsplash_url }}"><p>Username: @{{ campaign.username }}</p></a>
+
+  <p>Total photos: {{ campaign.total_photos }}</p>
+  <p>Total downloads: {{ campaign.total_downloads }}</p>
+
+  <img ng-src="{{ campaign.sample_photo_1 }}" alt="">
+  <img ng-src="{{ campaign.sample_photo_2 }}" alt="">
+  <img ng-src="{{ campaign.sample_photo_3 }}" alt="">
+
+  <a href="{{ campaign.unsplash_url }}">See more of {{ campaign.first_name }}'s photos</a>
+
+  <!-- view x amount more photos on his unsplash profile, x being number of photos -->
+
+  <!-- use email to have modal form to ask question and contact the photographer -->
+
+  <!-- ifs -->
+  <p ng-if="campaign.badge">{{ campaign.badge }}</p>
+</div>
