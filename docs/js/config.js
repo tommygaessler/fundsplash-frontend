@@ -3,13 +3,26 @@
   'use strict';
 
   angular
-  .module('fundsplash.config', [])
+  .module('fundsplash.config', ['satellizer'])
   .config(appConfig)
   .run(function($templateCache) {
     $templateCache.removeAll();
   });
 
-  function appConfig($routeProvider, $locationProvider) {
+  function appConfig($routeProvider, $locationProvider, $authProvider) {
+
+    $authProvider.oauth2({
+      name: 'unsplash',
+      url: 'http://localhost:3000/auth',
+      clientId: '2c9aa4160523a0848dc028d33ed50635abaa5d8a5f360a58d5760d8ebdedfac6',
+      redirectUri: 'http://localhost:8888',
+      requiredUrlParams: ['scope', 'redirect_uri', 'client_id', 'response_type'],
+      scope: ['public', 'write_likes', 'write_followers', 'read_user'],
+      scopePrefix: '',
+      scopeDelimiter: '+',
+      authorizationEndpoint: 'https://unsplash.com/oauth/authorize',
+    });
+
     $routeProvider
     .when('/', {
       templateUrl: 'js/components/home/home.view.html',
