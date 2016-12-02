@@ -2,7 +2,13 @@
 
 <a href="/#/">Home</a>
 
-<button type="button" ng-click="authenticate()" name="button">Sign in with Unsplash</button>
+<button ng-if="!user" ng-click="authenticate()">Sign in with Unsplash</button>
+
+<img ng-src="{{ user.profile_image.large }}" alt="">
+
+<h1 ng-if="user">Welcome {{ user.first_name }}!</h1>
+
+<p>{{ user.bio }}</p>
 
 <!-- /campaigns/:project_name could be tommys-trip-to-iceland has to be unique tho-->
 
