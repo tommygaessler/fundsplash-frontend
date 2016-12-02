@@ -6,18 +6,44 @@
     <title>Fundsplash</title>
     <!-- styles -->
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link rel="stylesheet" type="text/css" href="styles.css">
   </head>
   <body ng-cloak>
+    <header>
+      <div class="header-wrapper">
+        <nav>
+          <a href="/#/" class="logo">
+            <i class="fa fa-camera" aria-hidden="true"></i>
+          </a>
+          <input placeholder="Search Campaigns" ng-model="search" type="text">
+          <button>
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </nav>
+        <nav>
+          <a href="/#/browse">BROWSE</a>
+          <a href="/#/create">CREATE</a>
+        </nav>
+        <nav>
+          <!-- <a href="/#/profile" ng-if="user.username">
+            <img ng-src="{{ user.profile_image.large }}" alt="">
+          </a> -->
+          <a href="/#/profile">
+            <img ng-src="https://images.unsplash.com/placeholder-avatars/extra-large.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128&s=ee8bbf5fb8d6e43aaaa238feae2fe90d" alt="">
+          </a>
+        </nav>
+      </div>
+    </header>
 
-    <!-- main header: start campaign, browse campaigns, if logged in have user photo, and profile page -->
+    <main ng-view></main>
 
-    <div ng-view></div>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
     <!-- scripts -->
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/satellizer/0.15.5/satellizer.min.js"></script>
+    <script src="//cdn.jsdelivr.net/satellizer/0.15.5/satellizer.min.js"></script>
 
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/config.js"></script>
@@ -30,5 +56,8 @@
     <script type="text/javascript" src="js/components/create/create.controller.js"></script>
     <!-- home component -->
     <script type="text/javascript" src="js/components/home/home.controller.js"></script>
+
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/9dca7d9927.js"></script>
   </body>
 </html>

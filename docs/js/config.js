@@ -20,7 +20,7 @@
       scope: ['public', 'write_likes', 'write_followers', 'read_user'],
       scopePrefix: '',
       scopeDelimiter: '+',
-      authorizationEndpoint: 'https://unsplash.com/oauth/authorize',
+      authorizationEndpoint: 'https://unsplash.com/oauth/authorize'
     });
 
     $routeProvider

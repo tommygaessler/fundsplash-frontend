@@ -1,34 +1,75 @@
-<h1>Browse</h1>
+<div class="wrapper">
 
-<a href="/#/">Home</a>
+  <!-- <h1>Browse</h1> -->
 
-<!-- parent nav: active, funded, failed -->
+  <div class="status">
+    <a ng-model="status" ng-click="status='active'">Active</a>
+    <a ng-model="status" ng-click="status='funded'">Funded</a>
+    <a ng-model="status" ng-click="status='failed'">Failed</a>
+  </div>
 
-<!-- active navigation: popular, almost finished, just started -->
+  <!-- active navigation: popular, almost finished, just started -->
 
-<div ng-repeat="campaign in campaigns">
-  <img ng-src="{{ campaign.profile_image }}" alt="">
-  <h2>{{ campaign.name }}</h2>
-  <p>Status: {{ campaign.status }}</p>
-  <p>Location: {{ campaign.location }}</p>
-  <p>Description: {{ campaign.description }}</p>
-  <p>Goal: {{ campaign.goal }}</p>
-  <p>Raised: {{ campaign.raised }}</p>
-  <a href="{{ campaign.unsplash_url }}"><p>Username: @{{ campaign.username }}</p></a>
+  <div ng-repeat="campaign in campaigns | filter:status | filter:search" class="campaigns">
 
-  <p>Total photos: {{ campaign.total_photos }}</p>
-  <p>Total downloads: {{ campaign.total_downloads }}</p>
+    <div class="row">
+      <div class="column third">
+        <img class="profile-image" class="sample-photo" ng-src="{{ campaign.profile_image }}" alt="">
+        <h2 class="name">{{ campaign.name }}</h2>
+        <a href="{{ campaign.unsplash_url }}"><p>Username: @{{ campaign.username }}</p></a>
+        <p ng-if="campaign.badge">{{ campaign.badge }}</p>
+        <p>Current Location: {{ campaign.current_location }}</p>
+        <p>Total photos: {{ campaign.total_photos }}</p>
+        <p>Total downloads: {{ campaign.downloads | number}}</p>
+      </div>
+      <div class="column third">
+        <div class="description">
+          <h2 class="location">{{ campaign.location }}</h2>
+          <p>Description: {{ campaign.description }}</p>
+        </div>
+      </div>
+      <div class="column third">
+        <h2 class="percentage">{{ campaign.raised / campaign.goal * 100 | number:0 }}%</h2>
+        <h3 class="percentage-subtext">Funded</h3>
+        <h2 class="goal">{{ campaign.raised | currency }} of {{ campaign.goal | currency }}</h2>
+        <progress max="100" value="80"></progress>
+        <time>20 Days to go</time>
+        <form action="/your-server-side-code" method="POST">
+          <script
+            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_azE802fthc69BcEpUKGLJx6W"
+            data-amount="999"
+            data-name="{{ campaign.name }}'s"
+            data-description="trip to {{ campaign.location }}"
+            data-image="{{ campaign.profile_image }}"
+            data-locale="auto"
+            data-label="Contribute to {{ campaign.first_name }}'s Campaign"
+            data-zip-code="true">
+          </script>
+        </form>
+      </div>
+    </div>
 
-  <img ng-src="{{ campaign.sample_photo_1 }}" alt="">
-  <img ng-src="{{ campaign.sample_photo_2 }}" alt="">
-  <img ng-src="{{ campaign.sample_photo_3 }}" alt="">
+    <div class="row">
+      <div class="column third">
+        <img class="sample-photo" ng-src="{{ campaign.sample_photo_1 }}" alt="">
+      </div>
+      <div class="column third">
+        <img class="sample-photo" ng-src="{{ campaign.sample_photo_2 }}" alt="">
+      </div>
+      <div class="column third">
+        <img class="sample-photo" ng-src="{{ campaign.sample_photo_3 }}" alt="">
+      </div>
+    </div>
 
-  <a href="{{ campaign.unsplash_url }}">See more of {{ campaign.first_name }}'s photos</a>
+    <div class="more-link">
+      <a href="{{ campaign.unsplash_url }}" target="_blank">See more of {{ campaign.first_name }}'s photos</a>
+    </div>
 
-  <!-- view x amount more photos on his unsplash profile, x being number of photos -->
 
-  <!-- use email to have modal form to ask question and contact the photographer -->
+    <!-- view x amount more photos on his unsplash profile, x being number of photos -->
 
-  <!-- ifs -->
-  <p ng-if="campaign.badge">{{ campaign.badge }}</p>
+    <!-- use email to have modal form to ask question and contact the photographer -->
+  </div>
+
 </div>

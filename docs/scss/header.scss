@@ -1,0 +1,107 @@
+header {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 15px 20px;
+  height: 62px;
+  z-index: 2;
+
+  .header-wrapper {
+    position: relative;
+
+    nav {
+      height: 32px;
+
+      &:nth-child(1) {
+
+        position: absolute;
+        left: 0;
+
+        .logo {
+          color: $black;
+          text-decoration: none;
+          
+          i {
+            font-size: 32px;
+            vertical-align: middle;
+            margin-right: 14px;
+          }
+        }
+
+        input {
+          height: 32px;
+          background-color: #f8f8f8;
+          border: 1px solid #ddd;
+          border-radius: 16px;
+          outline: none;
+          color: #111;
+          font-size: 12px;
+          padding: 0 30px 0 35px;
+          @include ease;
+
+          &:focus {
+            background-color: #fff;
+            @include ease;
+          }
+
+          &:hover, &:focus {
+            border-color: #bbb;
+            @include ease;
+          }
+        }
+
+        button {
+          position: absolute;
+          top: 0;
+          left: 55px;
+          height: 32px;
+          padding: 0;
+          color: #999;
+          background-color: transparent;
+          border: 0;
+          outline: 0;
+          cursor: pointer;
+
+          i {
+            font-size: 15px;
+            margin: 0;
+            padding: 8px 2px 9px 9px;
+            fill: #999;
+            @include ease;
+          }
+        }
+      }
+
+      &:nth-child(2) {
+        display: block;
+        text-align: center;
+
+        a {
+          font-size: 11px;
+          margin-left: 12px;
+          margin-right: 12px;
+          line-height: 32px;
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-decoration: none;
+        }
+      }
+
+      &:nth-child(3) {
+        position: absolute;
+        right: 0;
+        top: 0;
+        a {
+          img {
+            width: 32px;
+            border-radius: 50%;
+            box-shadow: 0 0 1px rgba(0,0,0,.5);
+          }
+        }
+      }
+    }
+  }
+}

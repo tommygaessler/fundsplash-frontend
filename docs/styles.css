@@ -1,0 +1,189 @@
+* {
+  box-sizing: border-box; }
+
+body {
+  position: relative; }
+
+main {
+  position: relative;
+  top: 62px; }
+
+a {
+  color: #999;
+  transition: all 333ms ease-in-out; }
+  a:hover {
+    transition: all 333ms ease-in-out;
+    color: #111; }
+
+.wrapper {
+  width: 85%;
+  max-width: 1100px;
+  margin: 0 auto; }
+
+.row {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  *zoom: 1; }
+  .row:after {
+    clear: both; }
+  .row:after, .row:before {
+    content: '';
+    display: table; }
+
+.column {
+  float: left;
+  margin-right: 2%; }
+  .column.half {
+    width: 49%; }
+  .column.third {
+    width: 32%; }
+  .column.fourth {
+    width: 23.5%; }
+  .column.fifth {
+    width: 18.4%; }
+  .column:last-of-type {
+    margin-right: 0; }
+  @media (max-width: 400px) {
+    .column {
+      width: 100% !important;
+      margin-right: 0; } }
+
+header {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.95);
+  padding: 15px 20px;
+  height: 62px;
+  z-index: 2; }
+  header .header-wrapper {
+    position: relative; }
+    header .header-wrapper nav {
+      height: 32px; }
+      header .header-wrapper nav:nth-child(1) {
+        position: absolute;
+        left: 0; }
+        header .header-wrapper nav:nth-child(1) .logo {
+          color: #111;
+          text-decoration: none; }
+          header .header-wrapper nav:nth-child(1) .logo i {
+            font-size: 32px;
+            vertical-align: middle;
+            margin-right: 14px; }
+        header .header-wrapper nav:nth-child(1) input {
+          height: 32px;
+          background-color: #f8f8f8;
+          border: 1px solid #ddd;
+          border-radius: 16px;
+          outline: none;
+          color: #111;
+          font-size: 12px;
+          padding: 0 30px 0 35px;
+          transition: all 333ms ease-in-out; }
+          header .header-wrapper nav:nth-child(1) input:focus {
+            background-color: #fff;
+            transition: all 333ms ease-in-out; }
+          header .header-wrapper nav:nth-child(1) input:hover, header .header-wrapper nav:nth-child(1) input:focus {
+            border-color: #bbb;
+            transition: all 333ms ease-in-out; }
+        header .header-wrapper nav:nth-child(1) button {
+          position: absolute;
+          top: 0;
+          left: 55px;
+          height: 32px;
+          padding: 0;
+          color: #999;
+          background-color: transparent;
+          border: 0;
+          outline: 0;
+          cursor: pointer; }
+          header .header-wrapper nav:nth-child(1) button i {
+            font-size: 15px;
+            margin: 0;
+            padding: 8px 2px 9px 9px;
+            fill: #999;
+            transition: all 333ms ease-in-out; }
+      header .header-wrapper nav:nth-child(2) {
+        display: block;
+        text-align: center; }
+        header .header-wrapper nav:nth-child(2) a {
+          font-size: 11px;
+          margin-left: 12px;
+          margin-right: 12px;
+          line-height: 32px;
+          padding-top: 12px;
+          padding-bottom: 12px;
+          text-decoration: none; }
+      header .header-wrapper nav:nth-child(3) {
+        position: absolute;
+        right: 0;
+        top: 0; }
+        header .header-wrapper nav:nth-child(3) a img {
+          width: 32px;
+          border-radius: 50%;
+          box-shadow: 0 0 1px rgba(0, 0, 0, 0.5); }
+
+.status {
+  text-align: center; }
+  .status a {
+    cursor: pointer; }
+
+.description {
+  margin-top: 119.921px; }
+
+.more-link {
+  text-align: center;
+  margin-top: 50px; }
+
+.profile-image {
+  width: 100px;
+  border-radius: 50%;
+  display: block;
+  margin: auto; }
+
+.sample-photo {
+  width: 100%; }
+
+.name {
+  text-align: center; }
+
+.percentage {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: 69px;
+  text-align: center; }
+
+progress {
+  width: 100%; }
+
+.stripe-button-el {
+  display: block !important;
+  margin: auto !important; }
+
+.percentage-subtext {
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center; }
+
+time {
+  margin-bottom: 30px;
+  display: block;
+  text-align: center; }
+
+.campaigns {
+  margin-bottom: 100px; }
+
+.goal {
+  text-align: center; }
+
+h1 {
+  font-size: 46px;
+  margin-top: 60px;
+  margin-bottom: 24px;
+  text-align: center; }
+
+.head-line {
+  text-align: center; }

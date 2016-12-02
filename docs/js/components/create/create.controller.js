@@ -18,7 +18,7 @@
         sessionStorage.setItem('token', user.data.token);
         $rootScope.user = user.data.data;
       });
-    }
+    };
   }
 
 })();

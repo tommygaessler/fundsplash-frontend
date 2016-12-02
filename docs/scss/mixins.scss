@@ -1,0 +1,38 @@
+// -------------- Clearfix -------------- //
+@mixin clearfix {
+    *zoom: 1;
+
+    &:after { clear: both; }
+
+    &:after,
+    &:before {
+        content: '';
+        display: table;
+    }
+}
+
+// -------------- Breakpoints -------------- //
+// Set our breakpoint names
+$breakpoints: (
+    'phone':   ( max-width:  400px ),
+    'tablet':  ( max-width:  800px ),
+    'laptop': ( max-width:  1024px ),
+    'large':  ( min-width: 1921px )  // This is a query for a large screen
+);
+
+// Mixin
+@mixin breakpoint($name) {
+    @if map-has-key($breakpoints, $name) {
+        @media #{inspect(map-get($breakpoints, $name))} {
+            @content;
+        }
+    }
+    @else {
+        @warn "Couldn't find a breakpoint named `#{$name}`.";
+    }
+}
+
+// -------------- Transition/Ease -------------- //
+@mixin ease($time:333ms, $el: all, $anim: ease-in-out) {
+    transition: $el $time $anim;
+}

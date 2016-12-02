@@ -1,0 +1,21 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  position: relative;
+}
+
+main {
+  position: relative;
+  top: 62px;
+}
+
+a {
+  color: $gray;
+  @include ease;
+  &:hover {
+    @include ease;
+    color: $black;
+  }
+}

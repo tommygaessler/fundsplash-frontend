@@ -10,7 +10,8 @@
 
   function browseController($scope, $http, $rootScope) {
     /*jshint validthis: true */
-    this.greeting = 'Hello World!';
+
+    $rootScope.status = 'active';
 
     $http.get('http://localhost:3000/campaigns')
     .then((campaigns) => {
