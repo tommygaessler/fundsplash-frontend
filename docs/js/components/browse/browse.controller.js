@@ -17,6 +17,26 @@
     .then((campaigns) => {
       $rootScope.campaigns = campaigns.data;
     });
+
+    var handler = StripeCheckout.configure({
+      key: 'pk_test_azE802fthc69BcEpUKGLJx6W'
+    });
+
+    this.stripe = function(campaign) {
+
+      handler.open({
+        name: `${campaign.first_name}'s`,
+        description: `trip to ${campaign.location}`,
+        amount: 2000,
+        image: campaign.profile_image,
+        locale: 'false',
+        token: function(token) {
+          // send post request to server and send confirmation email
+          console.log(token);
+          console.log(campaign);
+        }
+      });
+    }
   }
 
 })();
