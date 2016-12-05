@@ -11,7 +11,7 @@
   function browseController($scope, $http, $rootScope) {
     /*jshint validthis: true */
 
-    $rootScope.status = 'active';
+    // $rootScope.status = 'active';
 
     $http.get('http://localhost:3000/campaigns')
     .then((campaigns) => {
@@ -34,6 +34,16 @@
           // send post request to server and send confirmation email
           console.log(token);
           console.log(campaign);
+
+          const data = {
+            token: token,
+            campaign: campaign
+          }
+
+          $http.post('http://localhost:3000/stripe', data)
+          .then((data) => {
+            console.log(data);
+          });
         }
       });
     }
