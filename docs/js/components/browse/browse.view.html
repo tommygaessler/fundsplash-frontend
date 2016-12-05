@@ -2,15 +2,17 @@
 
   <!-- <h1>Browse</h1> -->
 
-  <div class="status">
+  <!-- <div class="status">
     <a ng-model="status" ng-click="status='active'">Active</a>
     <a ng-model="status" ng-click="status='funded'">Funded</a>
     <a ng-model="status" ng-click="status='failed'">Failed</a>
-  </div>
+  </div> -->
 
   <!-- active navigation: popular, almost finished, just started -->
+  <!-- add active stuff -->
 
-  <div ng-repeat="campaign in campaigns | filter:status | filter:search" class="campaigns">
+  <!-- <div ng-repeat="campaign in campaigns | filter:status | filter:search" class="campaigns"> -->
+  <div ng-repeat="campaign in campaigns | filter:search" class="campaigns">
 
     <div class="row">
       <div class="column third">
@@ -35,7 +37,9 @@
         <progress max="100" value="80"></progress>
         <time>20 Days to go</time>
 
-        <button id="customButton" ng-click="browseCtrl.stripe(campaign)" ng-if="campaign.status == 'active'">Purchase</button>
+        <!-- <button id="customButton" ng-click="browseCtrl.stripe(campaign)" ng-if="campaign.status == 'active'">Purchase</button> -->
+
+        <button id="customButton" ng-click="browseCtrl.stripe(campaign)">Contribute to {{ campaign.first_name }}'s Campaign</button>
 
       </div>
     </div>

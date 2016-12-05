@@ -4,7 +4,7 @@
   <button ng-click="authenticate()">Sign in with Unsplash</button>
 </div>
 
-<div ng-if="user" class="campaign">
+<div ng-if="user && !campaign" class="campaign">
   <h1>Welcome {{ user.first_name }}!</h1>
 
   <img ng-src="{{ user.profile_image }}" alt="">
@@ -24,9 +24,7 @@
 
     <label>Choose 3 sample photos to showoff some of your work!</label>
 
-    <img ng-repeat="photo in photos" ng-src="{{ photo.urls.regular }}" alt="">
-
-    <!-- Hit photo api and have photos show up here -->
+    <img ng-repeat="photo in photos track by $index" ng-src="{{ photo.urls.regular }}" alt="" style="width: 30%" ng-click="createCtrl.photos(photo)" ng-class="{selected: photo.toggle}">
 
     <label>Add a description to tell why you want to travel here!</label>
 
@@ -34,5 +32,24 @@
 
     <button>Create</button>
   </form>
+</div>
 
+<div ng-if="campaign">
+  <h1>Your Campaign</h1>
+
+  <p>{{ campaign.location }}</p>
+  <p>{{ campaign.description }}</p>
+  <p>{{ campaign.goal }}</p>
+
+  <div class="row">
+    <div class="column third">
+      <img ng-src="{{ campaign.sample_photo_1 }}" alt="">
+    </div>
+    <div class="column third">
+      <img ng-src="{{ campaign.sample_photo_2 }}" alt="">
+    </div>
+    <div class="column third">
+      <img ng-src="{{ campaign.sample_photo_3 }}" alt="">
+    </div>
+  </div>
 </div>

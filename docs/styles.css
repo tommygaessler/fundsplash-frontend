@@ -71,8 +71,9 @@ header {
           text-decoration: none; }
           header .header-wrapper nav:nth-child(1) .logo i {
             font-size: 32px;
-            vertical-align: middle;
-            margin-right: 14px; }
+            vertical-align: middle; }
+            header .header-wrapper nav:nth-child(1) .logo i:nth-child(2) {
+              margin-right: 14px; }
         header .header-wrapper nav:nth-child(1) input {
           height: 32px;
           background-color: #f8f8f8;
@@ -92,7 +93,7 @@ header {
         header .header-wrapper nav:nth-child(1) button {
           position: absolute;
           top: 0;
-          left: 55px;
+          left: 77px;
           height: 32px;
           padding: 0;
           color: #999;
@@ -187,3 +188,6 @@ h1 {
 
 .head-line {
   text-align: center; }
+
+.selected {
+  border: 2px red solid; }
