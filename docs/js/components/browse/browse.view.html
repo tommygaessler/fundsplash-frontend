@@ -34,19 +34,9 @@
         <h2 class="goal">{{ campaign.raised | currency }} of {{ campaign.goal | currency }}</h2>
         <progress max="100" value="80"></progress>
         <time>20 Days to go</time>
-        <form action="/your-server-side-code" method="POST">
-          <script
-            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-            data-key="pk_test_azE802fthc69BcEpUKGLJx6W"
-            data-amount="999"
-            data-name="{{ campaign.name }}'s"
-            data-description="trip to {{ campaign.location }}"
-            data-image="{{ campaign.profile_image }}"
-            data-locale="auto"
-            data-label="Contribute to {{ campaign.first_name }}'s Campaign"
-            data-zip-code="true">
-          </script>
-        </form>
+
+        <button id="customButton" ng-click="browseCtrl.stripe(campaign)" ng-if="campaign.status == 'active'">Purchase</button>
+
       </div>
     </div>
 

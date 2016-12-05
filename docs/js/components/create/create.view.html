@@ -1,15 +1,38 @@
-<h1>Create</h1>
+<div ng-if="!user">
+  <h1>Create</h1>
 
-<a href="/#/">Home</a>
+  <button ng-click="authenticate()">Sign in with Unsplash</button>
+</div>
 
-<button ng-if="!user" ng-click="authenticate()">Sign in with Unsplash</button>
+<div ng-if="user" class="campaign">
+  <h1>Welcome {{ user.first_name }}!</h1>
 
-<img ng-src="{{ user.profile_image.large }}" alt="">
+  <img ng-src="{{ user.profile_image }}" alt="">
 
-<h1 ng-if="user">Welcome {{ user.first_name }}!</h1>
+  <form name="form" ng-submit="createCtrl.campaign()">
+    <label>Where would you like to travel?</label>
 
-<p>{{ user.bio }}</p>
+    <input type="text" name="location" ng-model="createCtrl.location">
 
-<!-- /campaigns/:project_name could be tommys-trip-to-iceland has to be unique tho-->
+    <!-- Google map -->
 
-<!-- /:username is users profile with some sample photos and maybe campaigns they have contributed to and created -->
+    <label>How much would you like to raise?</label>
+
+    <input type="text" name="goal" ng-model="createCtrl.goal">
+
+    <!-- Add slider here -->
+
+    <label>Choose 3 sample photos to showoff some of your work!</label>
+
+    <img ng-repeat="photo in photos" ng-src="{{ photo.urls.regular }}" alt="">
+
+    <!-- Hit photo api and have photos show up here -->
+
+    <label>Add a description to tell why you want to travel here!</label>
+
+    <textarea name="name" rows="8" cols="80" name="description" ng-model="createCtrl.description"></textarea>
+
+    <button>Create</button>
+  </form>
+
+</div>

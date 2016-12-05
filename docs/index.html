@@ -25,12 +25,8 @@
           <a href="/#/create">CREATE</a>
         </nav>
         <nav>
-          <!-- <a href="/#/profile" ng-if="user.username">
-            <img ng-src="{{ user.profile_image.large }}" alt="">
-          </a> -->
-          <a href="/#/profile">
-            <img ng-src="https://images.unsplash.com/placeholder-avatars/extra-large.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128&s=ee8bbf5fb8d6e43aaaa238feae2fe90d" alt="">
-          </a>
+          <img ng-if="user" ng-src="{{ user.profile_image }}" alt="">
+          <img ng-if="!user" ng-src="https://images.unsplash.com/placeholder-avatars/extra-large.jpg?ixlib=rb-0.3.5&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128&s=ee8bbf5fb8d6e43aaaa238feae2fe90d" alt="">
         </nav>
       </div>
     </header>
@@ -44,6 +40,8 @@
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular-route.min.js"></script>
 
     <script src="//cdn.jsdelivr.net/satellizer/0.15.5/satellizer.min.js"></script>
+
+    <script src="https://checkout.stripe.com/checkout.js"></script>
 
     <script type="text/javascript" src="js/app.js"></script>
     <script type="text/javascript" src="js/config.js"></script>

@@ -23,7 +23,7 @@ header {
         .logo {
           color: $black;
           text-decoration: none;
-          
+
           i {
             font-size: 32px;
             vertical-align: middle;
@@ -94,12 +94,11 @@ header {
         position: absolute;
         right: 0;
         top: 0;
-        a {
-          img {
-            width: 32px;
-            border-radius: 50%;
-            box-shadow: 0 0 1px rgba(0,0,0,.5);
-          }
+
+        img {
+          width: 32px;
+          border-radius: 50%;
+          box-shadow: 0 0 1px rgba(0,0,0,.5);
         }
       }
     }
