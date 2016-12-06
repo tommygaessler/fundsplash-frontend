@@ -38,10 +38,15 @@
         this.sample_photos.push(photo);
         photo.toggle = !photo.toggle;
       }
-      console.log(this.sample_photos);
-    }
+    };
 
     this.campaign = function() {
+
+      this.ends_at = parseInt(this.ends_at);
+
+      var now = new Date();
+      var ends_at = new Date();
+      ends_at.setDate(now.getDate()+this.ends_at);
 
       const data = {
         location: this.location,
@@ -50,12 +55,13 @@
         photographer_id: $rootScope.user.id,
         sample_photo_1: this.sample_photos[0].urls.regular,
         sample_photo_2: this.sample_photos[1].urls.regular,
-        sample_photo_3: this.sample_photos[2].urls.regular
-      }
+        sample_photo_3: this.sample_photos[2].urls.regular,
+        ends_at: ends_at.toISOString()
+      };
 
       $http.post('http://localhost:3000/campaign', data)
       .then((created) => {
-        console.log(created);
+
         $rootScope.created = true;
 
         const photographer_id = sessionStorage.getItem('photographer_id');
@@ -63,11 +69,10 @@
         // make api call to database to grab values
         $http.get(`http://localhost:3000/campaign/${photographer_id}`)
         .then((campaign) => {
-          console.log(campaign);
           $rootScope.campaign = campaign.data;
         });
       });
-    }
+    };
   }
 
 })();

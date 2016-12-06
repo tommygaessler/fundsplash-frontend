@@ -6,9 +6,9 @@
     .module('fundsplash.components.browse', [])
     .controller('browseController', browseController);
 
-  browseController.$inject = ['$scope', '$http', '$rootScope'];
+  browseController.$inject = ['$scope', '$http', '$rootScope', '$interval'];
 
-  function browseController($scope, $http, $rootScope) {
+  function browseController($scope, $http, $rootScope, $interval) {
     /*jshint validthis: true */
 
     // $rootScope.status = 'active';
@@ -16,6 +16,18 @@
     $http.get('http://localhost:3000/campaigns')
     .then((campaigns) => {
       $rootScope.campaigns = campaigns.data;
+      $rootScope.campaigns.forEach(function(campaign) {
+        var ends_at = moment(campaign.ends_at);
+        var now = moment();
+        campaign.countdown = countdown(ends_at, now, countdown.DAYS|countdown.HOURS|countdown.MINUTES|countdown.SECONDS, 1).toString();
+      });
+      $interval(function() {
+        $rootScope.campaigns.forEach(function(campaign) {
+          var ends_at = moment(campaign.ends_at);
+          var now = moment();
+          campaign.countdown = countdown(ends_at, now, countdown.DAYS|countdown.HOURS|countdown.MINUTES|countdown.SECONDS, 1).toString();
+        });
+      }, 1000);
     });
 
     var handler = StripeCheckout.configure({
@@ -38,7 +50,7 @@
           const data = {
             token: token,
             campaign: campaign
-          }
+          };
 
           $http.post('http://localhost:3000/stripe', data)
           .then((data) => {
@@ -47,7 +59,7 @@
           });
         }
       });
-    }
+    };
   }
 
 })();

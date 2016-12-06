@@ -11,7 +11,8 @@
       'fundsplash.components.auth',
       'fundsplash.components.browse',
       'fundsplash.components.create',
-      'fundsplash.components.home'
+      'fundsplash.components.home',
+      'angularMoment'
     ]);
 
 })();
