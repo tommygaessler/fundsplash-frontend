@@ -22,6 +22,10 @@
 
     <!-- Add slider here -->
 
+    <label for="">Choose how many days your campagin will run</label>
+
+    <input type="text" name="ends_at" ng-model="createCtrl.ends_at">
+
     <label>Choose 3 sample photos to showoff some of your work!</label>
 
     <img ng-repeat="photo in photos track by $index" ng-src="{{ photo.urls.regular }}" alt="" style="width: 30%" ng-click="createCtrl.photos(photo)" ng-class="{selected: photo.toggle}">

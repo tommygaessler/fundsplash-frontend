@@ -35,7 +35,7 @@
         <h3 class="percentage-subtext">Funded</h3>
         <h2 class="goal">{{ campaign.raised | currency }} of {{ campaign.goal | currency }}</h2>
         <progress max="{{ campaign.goal }}" value="{{ campaign.raised }}"></progress>
-        <time>20 Days to go</time>
+        <time>{{ campaign.countdown }} Left</time>
 
         <!-- <button id="customButton" ng-click="browseCtrl.stripe(campaign)" ng-if="campaign.status == 'active'">Purchase</button> -->
 
