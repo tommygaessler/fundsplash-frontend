@@ -34,7 +34,7 @@
         <h2 class="percentage">{{ campaign.raised / campaign.goal * 100 | number:0 }}%</h2>
         <h3 class="percentage-subtext">Funded</h3>
         <h2 class="goal">{{ campaign.raised | currency }} of {{ campaign.goal | currency }}</h2>
-        <progress max="100" value="80"></progress>
+        <progress max="{{ campaign.goal }}" value="{{ campaign.raised }}"></progress>
         <time>20 Days to go</time>
 
         <!-- <button id="customButton" ng-click="browseCtrl.stripe(campaign)" ng-if="campaign.status == 'active'">Purchase</button> -->

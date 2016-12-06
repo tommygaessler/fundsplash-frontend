@@ -43,6 +43,7 @@
           $http.post('http://localhost:3000/stripe', data)
           .then((data) => {
             console.log(data);
+            campaign.raised = data.data.balance;
           });
         }
       });
