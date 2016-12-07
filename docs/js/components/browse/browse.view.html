@@ -1,4 +1,6 @@
-<div class="wrapper">
+<i ng-if="!campaigns" class="fa fa-heart-o loading" aria-hidden="true"></i>
+
+<div class="wrapper" ng-if="campaigns">
 
   <!-- <h1>Browse</h1> -->
 
@@ -15,12 +17,16 @@
   <div ng-repeat="campaign in campaigns | filter:search" class="campaigns">
 
     <div class="row">
-      <div class="column third">
-        <img class="profile-image" class="sample-photo" ng-src="{{ campaign.profile_image }}" alt="">
+      <div class="column third left">
+        <a href="{{ campaign.unsplash_url }}" target="_blank">
+          <img class="profile-image" class="sample-photo" ng-src="{{ campaign.profile_image }}" alt="">
+        </a>
         <h2 class="name">{{ campaign.name }}</h2>
-        <a href="{{ campaign.unsplash_url }}"><p>Username: @{{ campaign.username }}</p></a>
-        <p ng-if="campaign.badge">{{ campaign.badge }}</p>
-        <p>Current Location: {{ campaign.current_location }}</p>
+        <a href="{{ campaign.unsplash_url }}" target="_blank">
+          <p>(@{{ campaign.username }})</p>
+        </a>
+        <!-- <p ng-if="campaign.badge">{{ campaign.badge }}</p> -->
+        <!-- <p>Current Location: {{ campaign.current_location }}</p> -->
         <p>Total photos: {{ campaign.total_photos }}</p>
         <p>Total downloads: {{ campaign.downloads | number}}</p>
       </div>
@@ -33,13 +39,15 @@
       <div class="column third">
         <h2 class="percentage">{{ campaign.raised / campaign.goal * 100 | number:0 }}%</h2>
         <h3 class="percentage-subtext">Funded</h3>
-        <h2 class="goal">{{ campaign.raised | currency }} of {{ campaign.goal | currency }}</h2>
+        <h2 class="goal">{{ campaign.raised | currency:undefined:0 }} of {{ campaign.goal | currency:undefined:0 }}</h2>
         <progress max="{{ campaign.goal }}" value="{{ campaign.raised }}"></progress>
         <time>{{ campaign.countdown }} Left</time>
 
         <!-- <button id="customButton" ng-click="browseCtrl.stripe(campaign)" ng-if="campaign.status == 'active'">Purchase</button> -->
 
-        <button id="customButton" ng-click="browseCtrl.stripe(campaign)">Contribute to {{ campaign.first_name }}'s Campaign</button>
+        <button ng-if="!campaign.success" id="customButton" ng-click="browseCtrl.stripe(campaign)" class="stripe">Contribute to {{ campaign.first_name }}'s Campaign</button>
+
+        <p ng-if="campaign.success" class="success">{{ campaign.success }}</p>
 
       </div>
     </div>

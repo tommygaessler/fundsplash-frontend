@@ -1,59 +1,96 @@
 <div ng-if="!user">
   <h1>Create</h1>
 
-  <button ng-click="authenticate()">Sign in with Unsplash</button>
+  <button class="signin" ng-click="authenticate()"><i class="fa fa-camera" aria-hidden="true"></i>Sign in with Unsplash</button>
 </div>
 
-<div ng-if="user && !campaign" class="campaign">
-  <h1>Welcome {{ user.first_name }}!</h1>
+<div ng-if="user && !campaign" class="campaign wrapper form-wrapper">
 
-  <img ng-src="{{ user.profile_image }}" alt="">
+  <div class="row welcome">
+    <img ng-src="{{ user.profile_image }}" alt="">
+    <h1>Welcome {{ user.first_name }}!</h1>
+  </div>
 
   <form name="form" ng-submit="createCtrl.campaign()">
-    <label>Where would you like to travel?</label>
 
-    <input type="text" name="location" ng-model="createCtrl.location">
+    <div class="input-wrapper">
 
-    <!-- Google map -->
 
-    <label>How much would you like to raise?</label>
+      <label>Where would you like to travel?</label>
 
-    <input type="text" name="goal" ng-model="createCtrl.goal">
+      <input type="text" name="location" ng-model="createCtrl.location" required>
 
-    <!-- Add slider here -->
+      <!-- Google map -->
 
-    <label for="">Choose how many days your campagin will run</label>
+      <label>How much would you like to raise?</label>
 
-    <input type="text" name="ends_at" ng-model="createCtrl.ends_at">
+      <input type="text" name="goal" ng-model="createCtrl.goal" required>
 
-    <label>Choose 3 sample photos to showoff some of your work!</label>
+      <!-- Add slider here -->
 
-    <img ng-repeat="photo in photos track by $index" ng-src="{{ photo.urls.regular }}" alt="" style="width: 30%" ng-click="createCtrl.photos(photo)" ng-class="{selected: photo.toggle}">
+      <label for="">Choose how many days your campagin will run!</label>
 
-    <label>Add a description to tell why you want to travel here!</label>
+      <input type="text" name="ends_at" ng-model="createCtrl.ends_at" required>
 
-    <textarea name="name" rows="8" cols="80" name="description" ng-model="createCtrl.description"></textarea>
+      <label>Add a description to tell why you want to travel here!</label>
+
+      <textarea name="name" rows="8" cols="80" name="description" ng-model="createCtrl.description" required></textarea>
+
+    </div>
+    <label class="photo-label">Choose 3 sample photos to showoff some of your work!</label>
+    <div class="row">
+      <div class="column third" ng-repeat="photo in photos">
+        <p ng-if="photo.toggle" ng-click="createCtrl.photos(photo)">
+          <i class="fa fa-check" aria-hidden="true"></i> Selected</p>
+        <img class="sample_photo" ng-src="{{ photo.urls.regular }}" alt="" ng-click="createCtrl.photos(photo)" ng-class="{selected: photo.toggle}">
+      </div>
+    </div>
 
     <button>Create</button>
   </form>
 </div>
 
-<div ng-if="campaign">
+<div ng-if="campaign" class="wrapper wrapper-margin">
   <h1>Your Campaign</h1>
 
-  <p>{{ campaign.location }}</p>
-  <p>{{ campaign.description }}</p>
-  <p>{{ campaign.goal }}</p>
+  <div class="row">
+    <div class="column third left">
+      <a href="{{ campaign.unsplash_url }}" target="_blank">
+        <img class="profile-image" class="sample-photo" ng-src="{{ campaign.profile_image }}" alt="">
+      </a>
+      <h2 class="name">{{ campaign.name }}</h2>
+      <a href="{{ campaign.unsplash_url }}" target="_blank">
+        <p>(@{{ campaign.username }})</p>
+      </a>
+      <!-- <p ng-if="campaign.badge">{{ campaign.badge }}</p> -->
+      <!-- <p>Current Location: {{ campaign.current_location }}</p> -->
+      <p>Total photos: {{ campaign.total_photos }}</p>
+      <p>Total downloads: {{ campaign.downloads | number}}</p>
+    </div>
+    <div class="column third">
+      <div class="description">
+        <h2 class="location">{{ campaign.location }}</h2>
+        <p>Description: {{ campaign.description }}</p>
+      </div>
+    </div>
+    <div class="column third">
+      <h2 class="percentage">{{ campaign.raised / campaign.goal * 100 | number:0 }}%</h2>
+      <h3 class="percentage-subtext">Funded</h3>
+      <h2 class="goal">{{ campaign.raised | currency:undefined:0 }} of {{ campaign.goal | currency:undefined:0 }}</h2>
+      <progress max="{{ campaign.goal }}" value="{{ campaign.raised }}"></progress>
+      <time>{{ campaign.countdown }} Left</time>
+    </div>
+  </div>
 
   <div class="row">
     <div class="column third">
-      <img ng-src="{{ campaign.sample_photo_1 }}" alt="">
+      <img class="sample_photo" ng-src="{{ campaign.sample_photo_1 }}" alt="">
     </div>
     <div class="column third">
-      <img ng-src="{{ campaign.sample_photo_2 }}" alt="">
+      <img class="sample_photo" ng-src="{{ campaign.sample_photo_2 }}" alt="">
     </div>
     <div class="column third">
-      <img ng-src="{{ campaign.sample_photo_3 }}" alt="">
+      <img class="sample_photo" ng-src="{{ campaign.sample_photo_3 }}" alt="">
     </div>
   </div>
 </div>
