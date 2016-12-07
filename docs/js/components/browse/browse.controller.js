@@ -13,7 +13,7 @@
 
     // $rootScope.status = 'active';
 
-    $http.get('http://localhost:3000/campaigns')
+    $http.get('https://evening-badlands-56838.herokuapp.com/campaigns')
     .then((campaigns) => {
       $rootScope.campaigns = campaigns.data;
       $rootScope.campaigns.forEach(function(campaign) {
@@ -52,10 +52,16 @@
             campaign: campaign
           };
 
-          $http.post('http://localhost:3000/stripe', data)
+          $http.post('https://evening-badlands-56838.herokuapp.com/stripe', data)
           .then((data) => {
             console.log(data);
             campaign.raised = data.data.balance;
+            campaign.success = 'Contribution Successful!'
+            if ($rootScope.campaign) {
+              $rootScope.campaign.raised = campaign.raised;
+            } else {
+              console.log('success');
+            }
           });
         }
       });

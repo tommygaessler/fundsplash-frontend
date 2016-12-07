@@ -6,9 +6,9 @@
     .module('fundsplash.components.create', [])
     .controller('createController', createController);
 
-  createController.$inject = ['$scope', '$http', '$auth', '$rootScope'];
+  createController.$inject = ['$scope', '$http', '$auth', '$rootScope', '$interval'];
 
-  function createController($scope, $http, $auth, $rootScope) {
+  function createController($scope, $http, $auth, $rootScope, $interval) {
     /*jshint validthis: true */
 
     this.sample_photos = [];
@@ -56,10 +56,11 @@
         sample_photo_1: this.sample_photos[0].urls.regular,
         sample_photo_2: this.sample_photos[1].urls.regular,
         sample_photo_3: this.sample_photos[2].urls.regular,
-        ends_at: ends_at.toISOString()
+        ends_at: ends_at.toISOString(),
+        raised: 0
       };
 
-      $http.post('http://localhost:3000/campaign', data)
+      $http.post('https://evening-badlands-56838.herokuapp.com/campaign', data)
       .then((created) => {
 
         $rootScope.created = true;
@@ -67,9 +68,22 @@
         const photographer_id = sessionStorage.getItem('photographer_id');
 
         // make api call to database to grab values
-        $http.get(`http://localhost:3000/campaign/${photographer_id}`)
+        $http.get(`https://evening-badlands-56838.herokuapp.com/campaign/${photographer_id}`)
         .then((campaign) => {
           $rootScope.campaign = campaign.data;
+          console.log($rootScope.campaign);
+
+          var ends_at = moment($rootScope.campaign.ends_at);
+          var now = moment();
+          $rootScope.campaign.countdown = countdown(ends_at, now, countdown.DAYS|countdown.HOURS|countdown.MINUTES|countdown.SECONDS, 1).toString();
+
+          $interval(function() {
+            $rootScope.campaigns.forEach(function(campaign) {
+              var ends_at = moment($rootScope.campaign.ends_at);
+              var now = moment();
+              $rootScope.campaign.countdown = countdown(ends_at, now, countdown.DAYS|countdown.HOURS|countdown.MINUTES|countdown.SECONDS, 1).toString();
+            });
+          }, 1000);
         });
       });
     };

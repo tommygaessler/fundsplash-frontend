@@ -21,6 +21,11 @@ $grid-gutter: 2%;
 		width: (100% - ($grid-gutter * 1)) / 2;
 	}
 
+	&.two-third {
+    width: (100% - ($grid-gutter * 2)) / 1.5;
+
+  }
+
 	&.third {
 		width: (100% - ($grid-gutter * 2)) / 3;
 	}
