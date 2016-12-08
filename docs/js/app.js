@@ -14,5 +14,4 @@
       'fundsplash.components.home',
       'angularMoment'
     ]);
-
 })();
