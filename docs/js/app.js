@@ -1,5 +1,3 @@
-// sample angular code
-
 (function() {
 
   'use strict';
