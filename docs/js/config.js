@@ -13,7 +13,7 @@
 
     $authProvider.oauth2({
       name: 'unsplash',
-      url: 'https://evening-badlands-56838.herokuapp.com/auth',
+      url: 'https://fundsplash-backend.herokuapp.com/auth',
       clientId: '2c9aa4160523a0848dc028d33ed50635abaa5d8a5f360a58d5760d8ebdedfac6',
       redirectUri: 'http://fundsplash.com',
       requiredUrlParams: ['scope', 'redirect_uri', 'client_id', 'response_type'],

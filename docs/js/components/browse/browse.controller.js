@@ -13,7 +13,7 @@
 
     // $rootScope.status = 'active';
 
-    $http.get('https://evening-badlands-56838.herokuapp.com/campaigns')
+    $http.get('https://fundsplash-backend.herokuapp.com/campaigns')
     .then((campaigns) => {
       $rootScope.campaigns = campaigns.data;
       $rootScope.campaigns.forEach(function(campaign) {
@@ -52,7 +52,7 @@
             campaign: campaign
           };
 
-          $http.post('https://evening-badlands-56838.herokuapp.com/stripe', data)
+          $http.post('https://fundsplash-backend.herokuapp.com/stripe', data)
           .then((data) => {
             console.log(data);
             campaign.raised = data.data.balance;

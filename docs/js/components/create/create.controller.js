@@ -60,7 +60,7 @@
         raised: 0
       };
 
-      $http.post('https://evening-badlands-56838.herokuapp.com/campaign', data)
+      $http.post('https://fundsplash-backend.herokuapp.com/campaign', data)
       .then((created) => {
 
         $rootScope.created = true;
@@ -68,7 +68,7 @@
         const photographer_id = sessionStorage.getItem('photographer_id');
 
         // make api call to database to grab values
-        $http.get(`https://evening-badlands-56838.herokuapp.com/campaign/${photographer_id}`)
+        $http.get(`https://fundsplash-backend.herokuapp.com/campaign/${photographer_id}`)
         .then((campaign) => {
           $rootScope.campaign = campaign.data;
           console.log($rootScope.campaign);
